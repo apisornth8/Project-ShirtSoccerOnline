@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('Header') -%>
+        <body>
+            <div id="app">
+                <div class="card" style="height:100%;">
+                    <div style="text-align: center; background-color:crimson ;">
+                        <strong
+                            style="font-family:Georgia, 'Times New Roman', Times, serif;font-size: 60px;color:floralwhite;">SHIRT
+                            FOOTBALL ONLINE</strong>
+                    </div>
+                    <!-- Form -->
+                    
+                    <div class="card-content"
+                        style="text-align: center;font-size: 28px;">
+                        <label
+                            style="font-family:Georgia, 'Times New Roman', Times, serif;">REGISTER
+                            FORM</label><br>
+                        <div class="field">
+                            <label class="label" style="text-align: left;">Name</label>
+                            <div class="control">
+                                <input class="input" type="text"
+                                    placeholder="e.x. Cristiano Ronaldo"
+                                    v-model="name">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" style="text-align: left;">Username</label>
+                            <div class="control">
+                                <input class="input" type="text"
+                                    placeholder="e.x.Ronaldo007"
+                                    v-model="userName">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" style="text-align: left;">Password</label>
+                            <input class="input" type="password"
+                                placeholder="Password" v-model="passWord">
+                        </div>
+
+                        <div class="field">
+                            <label class="label" style="text-align: left;">Email</label>
+                            <div class="control">
+                                <input class="input" type="email"
+                                    placeholder="e.x. CR7@gmail.com"
+                                    v-model="email">
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                        <label class="label" style="text-align: left;">Select Role</label>
+                            <select v-model="role" class="form-select form-select-lg is-info mb-3" aria-label=".form-select-lg example">
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- SAVE CANCLE BUTTON -->
+                    <div style="text-align: center;padding: 50px;">
+                        <a v-on:click="checkUserBlank"><button
+                                class="button is-success is-large">SAVE</button></a>
+                        <a href="/"><button class="button is-danger is-large">CANCLE</button></a>
+                    </div>
+                    <!-- LOGIN BUTTON -->
+                    <div style="text-align: center;padding: 40px;">
+                        <strong>Already Have Account ?</strong><br>
+                        <a href="/"><button class="button is-link is-large">LOGIN</button></a>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+            <script>
+            // regExp ไว้เช็คชื่อที่ต้องเป็นตัวอักษรและ String เท่านั้น
+            var regExp = /[a-zA-Z]/g;
+            var regex_for_pass = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    name: "",
+                    userName: "",
+                    passWord: "",
+                    email: "",
+                    role: ""
+                },
+                methods: {
+                    checkUserBlank: function () {
+                        if (this.name === "" || this.userName === "" || this.passWord === "" || this.email === "") {
+                            alert("Please input Form !")
+                        } 
+                        else if (!regExp.test(this.name) || this.name.length < 2 ) {
+                            alert("NAME WRONG MUST BE STRING AND LENGTH MORE THAN 2")
+                        }
+                        else if (!regex_for_pass.test(this.passWord)) {
+                            alert("PASSWORD WRONG MUST BE UPPER AND LOWER CASE AND LENGTH MORE THAN 8")
+                        }
+                        else if (!emailPattern.test(this.email)) {
+                            alert("Email WRONG EX: test@gmail.com")
+                        }
+                        else if (!regExp.test(this.userName) || this.userName < 2) {
+                            alert("User Name WRONG MUST BE STRING AND LENGTH MORE THAN")
+                        }
+                        else if (!this.role === "Admin" && this.role === "User") {
+                            alert("Role WRONG")
+                        }
+                        else {
+                            axios.post('http://localhost:3000/register', {'username': this.userName, 'password': this.passWord, 'email': this.email,
+                            'name': this.name,'role': this.role});
+                            alert("REGISTER DONE PLEASE GO TO LOGIN !")
+                        }
+                    },
+                }
+            })
+          
+        </script>
+        </body>
+
+    </html>

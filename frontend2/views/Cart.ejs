@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('Header') -%>
+  <body>
+    <div id="app">
+      <section class="hero is-warning" style="width: 100%;">
+        <div class="hero-body">
+          <p class="title" style="color: white;">
+            SHIRT SOCCER ONLINE
+          </p>
+          <p class="subtitle" style="color: white;">
+            ALL SHIRT PREMIUM QULITY
+          </p>
+          <div class="navbar-end">
+            <a class="button is-primary is-inverted is-medium has-text-black"
+              href="/">
+              <span>Logout</span>
+            </a>
+          </div>
+          <div id="navbarMenuHeroA" class="navbar-menu" style="padding-bottom:
+            45px;">
+            <div class="navbar-end">
+              <span class="navbar-item">
+                <a class="button is-link is-inverted is-medium"
+                  href="/Landing_Page">
+                  <span>Home</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-primary is-inverted is-medium"
+                  href="/ManageProduct">
+                  <span>Manage Product</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-warning is-inverted is-medium
+                  has-background-white" href="/Cart">
+                  <span>Checkout</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div style="font-size: 50px;text-align: center;margin-top: 10px;">
+        <strong>All Your Product</strong>
+      </div>
+      <div class="container is-max-desktop p-5">
+        <div class="column pt-6 pl-0 pr-0">
+          <!-- card cart component แสดงข้อมูลที่อยู่ใน Localstorage ---------------------------------------------->
+          <div class="card mb-4" v-for="(item, index) in datafromcart" :key="index">
+            <div class="card-content p-0">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-96x96">
+                    <img :src="item.image" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="media-content pt-2">
+                  <p class="is-5">{{item.name}}</p>
+                  <div style="display: flex;justify-content: space-between;">
+                    <div>
+                      <span class="is-6 has-text-danger">{{item.price}} ฿</span>
+                      <span>x {{item.quantity}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="columns is-size-4">
+          <div class="column is-4">
+            Total
+          </div>
+          <div class="column is-3 has-text-right">
+            <!-- Total here ---------------------------------------- -->
+            {{sumPrice}} ฿
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- vue script -->
+    <script>
+      var app = new Vue({
+        el:'#app',
+        data: {
+              datafromcart : []
+            },
+            computed:{
+              sumPrice(){
+                let sum = 0
+                this.datafromcart.forEach(element => {
+                  sum += element.price * element.quantity
+                });
+                return sum
+              }
+            },
+              created(){
+                  const get_from_cart = localStorage.getItem("cart")
+                  this.datafromcart = JSON.parse(get_from_cart)
+                  console.log(this.datafromcart);
+              }
+      })
+    </script>
+  </html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('Header') -%>
+  <body>
+    <div id="app">
+      <section class="hero has-background-link" style="width: 100%;">
+        <div class="hero-body">
+          <p class="title" style="color:white">
+            SHIRT SOCCER ONLINE
+          </p>
+          <p class="subtitle" style="color:white">
+            ALL SHIRT PREMIUM QULITY
+          </p>
+          <div class="navbar-end">
+            <a class="button is-primary is-inverted is-medium has-text-black"
+              href="/">
+              <span>Logout</span>
+            </a>
+          </div>
+          <div id="navbarMenuHeroA" class="navbar-menu" style="padding-bottom:
+            45px;">
+            <div class="navbar-end">
+              <span class="navbar-item">
+                <a class="button is-link is-inverted is-medium"
+                  href="/Landing_Page">
+                  <span>Home</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-primary is-inverted is-medium"
+                  href="/ManageProduct">
+                  <span>Manage Product</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-warning is-inverted is-medium
+                  has-background-white" href="/Cart">
+                  <span>Checkout</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <table style="margin-top: 45px;margin-left: 45%;">
+        <tr>
+          <div>
+            <th>
+              <a>
+                <figure class="image is-128x128">
+                  <img class="is-rounded"
+                    src="https://thumbs.dreamstime.com/b/premier-league-often-referred-to-outside-england-as-english-epl-top-level-football-system-contested-clubs-202403499.jpg">
+                </figure>
+                <a href="/Landing_Page"><button class="is-dark mb-4 button" style="position: absolute;left: 100px;font-size: 20px;">Back</button></a>
+                <a href="/LaLiga"><button class="is-warning mb-4 button" style="position: absolute;right: 80px;font-size: 20px; color:white;">LaLiga</button></a>
+              </a>
+            </th>
+          </div>
+        </tr>
+      </table>
+      <div style="text-align: center;margin-top: 40px;font-size: 45px;">
+        <strong>PREMIER LEAGUE </strong>
+      </div>
+
+      <!-- Cart Part -->
+      <div class="column is-11 is-offset-1 pt-6 pl-6 ml-6">
+        <div style="display: flex;justify-content: space-between;">
+          <span class="is-size-4 mb-4">Cart</span>
+          <a @click="cart= []" class="is-danger mb-4 button">Clear</a>
+        </div>
+        <div v-for="(item, index) in cart" class="card mb-4">
+          <div class="card-content p-0">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-96x96">
+                  <img :src="item.image" alt="Placeholder image">
+                </figure>
+              </div>
+              <div class="media-content pt-2">
+                <p class="is-5">{{item.name}}</p>
+                <div style="display: flex;justify-content: space-between;">
+                  <div>
+                    <!-- ราคาสินค้า------------------------------------------------ -->
+                    <span class="is-6 has-text-danger">{{item.price}} ฿</span>
+                    <!-- จำนวนสินค้า----------------------------------------------- -->
+                    <span>x{{item.quantity}}</span>
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-danger mr-3"
+                      @click="removeFromCart(index)">REMOVE</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;justify-content: space-between;font-size:
+          1.25rem;">
+          <span class="has-text-weight-bold">Total</span>
+          <span id="totalPrice">{{sumPrice}} ฿</span>
+        </div>
+
+        <!-- ปุ่ม Checkout ------------------------------------------------------------ -->
+        <a class="button is-warning mt-3" style="width: 100%;"
+          @click="goCheckout">Checkout</a>
+
+      </div>
+      
+      <!-- MANU -->
+
+      <div class="has-background-danger-dark" style="text-align: center; margin-top: 60px;font-size: 30px;">
+        <strong style="color: white;">Manchester United Football Club</strong>
+      </div>
+      <!-- Card Product -->
+      <div class="columns">
+        <div v-if="item.id == 1" class="column is-3 pt-6 ml-6" style="margin-right: 50px;" v-for="(item, index) in product" :key="index">
+        <div>
+          <div class="container is-max-desktop">
+            <div class="is-multiline columns is-variable is-2">
+              <!-- Product details------------------------------------------>
+              <div id="news first" class="column">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-1by1">
+                      <img :src= "item.image" alt="Placeholder image">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <p class="title is-4">{{item.name}}</p>
+                        <p class="subtitle is-6">{{item.price}} ฿</p>
+                        <button type="button" class="btn btn-success"
+                          @click="addToCart(product, index)">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Chelsea -->
+      <div class="has-background-link-dark" style="text-align: center; margin-top: 60px;font-size: 30px;">
+        <strong style="color: white;">Chelsea Football Club</strong>
+      </div>
+      <!-- Card Product -->
+      <div class="columns">
+        <div v-if="item.id == 2" class="column is-3 pt-6 ml-6" style="margin-right: 50px;" v-for="(item, index) in product" :key="index">
+        <div>
+          <div class="container is-max-desktop">
+            <div class="is-multiline columns is-variable is-2">
+              <!-- Product details------------------------------------------>
+              <div id="news first" class="column">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-1by1">
+                      <img :src= "item.image" alt="Placeholder image">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <p class="title is-4">{{item.name}}</p>
+                        <p class="subtitle is-6">{{item.price}} ฿</p>
+                        <button type="button" class="btn btn-success"
+                          @click="addToCart(product, index)">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Arsenal -->
+      <div class="has-background-danger" style="text-align: center;margin-top:
+        60px;font-size: 30px;">
+        <strong style="color: white;">Arsenal Football Club</strong>
+      </div>
+      <!-- Card Product -->
+      <div class="columns">
+        <div v-if="item.id == 3" class="column is-3 pt-6 ml-6" style="margin-right: 50px;" v-for="(item, index) in product" :key="index">
+        <div>
+          <div class="container is-max-desktop">
+            <div class="is-multiline columns is-variable is-2">
+              <!-- Product details------------------------------------------>
+              <div id="news first" class="column">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-1by1">
+                      <img :src= "item.image" alt="Placeholder image">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <p class="title is-4">{{item.name}}</p>
+                        <p class="subtitle is-6">{{item.price}} ฿</p>
+                        <button type="button" class="btn btn-success"
+                          @click="addToCart(product, index)">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Created By </strong> APISORN TEEHOR <br>
+          WEB PROGRAMING KMITL
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- vue script -->
+    
+    
+    <script>
+      var app = new Vue({
+        el:'#app',
+        data: {
+              cart:[],
+              product:[]
+           },
+        methods: {
+                addToCart(items , index) {
+                    let item = items[index]
+                    let find_index = this.cart.findIndex((find) => find.name == items[index].name)
+                    if (find_index === -1) {
+                        item.quantity = 1
+                        this.cart.push(item)
+                    }
+                    else{
+                        this.cart[find_index].quantity += 1
+                    }
+                },
+                removeFromCart(index) {
+                    this.cart[index].quantity = 0
+                    this.cart.splice(index, 1)
+                },
+                goCheckout(){
+                    localStorage.setItem("cart", JSON.stringify(this.cart))
+                    window.location.href = "/Cart";
+                }
+        },
+        computed:{
+            sumPrice(){
+              let sum = 0
+              this.cart.forEach(element => {
+                sum += element.price * element.quantity
+              });
+              return sum
+            }
+        },
+        created(){
+         const get_product = axios.get("http://localhost:3000/product")
+         .then(res=>{this.product = res.data})
+        }
+      })
+    </script>
+  </body>
+</html>

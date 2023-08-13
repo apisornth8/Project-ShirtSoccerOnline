@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('Header') -%>
+  <body>
+    <div id="app">
+      <section class="hero is-danger" style="width: 100%;">
+        <div class="hero-body">
+          <p class="title">
+            SHIRT SOCCER ONLINE
+          </p>
+          <p class="subtitle">
+            ALL SHIRT PREMIUM QULITY
+          </p>
+          <div class="navbar-end">
+            <a class="button is-primary is-inverted is-medium has-text-black"
+              href="/">
+              <span>Logout</span>
+            </a>
+          </div>
+          <div id="navbarMenuHeroA" class="navbar-menu" style="padding-bottom:
+            45px;">
+            <div class="navbar-end">
+              <span class="navbar-item">
+                <a class="button is-link is-inverted is-medium" href="/Landing_Page">
+                  <span>Home</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-primary is-inverted is-medium" href="/ManageProduct">
+                  <span>Manage Product</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-warning is-inverted is-medium
+                  has-background-white" href="/Cart">
+                  <span>Checkout</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <table style="margin-top: 45px;margin-left: 25%;">
+        <tr>
+          <div>
+            <th style="padding: 50px;">
+              <a href="/PremierLeuge">
+                <figure class="image is-128x128">
+                  <img class="is-rounded"
+                    src="https://thumbs.dreamstime.com/b/premier-league-often-referred-to-outside-england-as-english-epl-top-level-football-system-contested-clubs-202403499.jpg">
+                </figure>
+              </a>
+            </th>
+            <th style="padding: 50px;">
+              <a href="/LaLiga">
+                <figure class="image is-128x128 ">
+                  <img class="is-rounded"
+                    src="https://fontlot.com/wp-content/uploads/2022/12/2-2.jpg">
+                </figure>
+              </a>
+            </th>
+            <th style="padding: 50px;">
+              <a href="/Bundesliga">
+                <figure class="image is-128x128">
+                  <img class="is-rounded"
+                    src="https://i.pinimg.com/736x/37/aa/3c/37aa3c8ee1919e73bea2f1b4b100795d.jpg">
+                </figure>
+              </a>
+            </th>
+          </div>
+        </tr>
+      </table>
+      <div style="text-align: center;margin-top: 40px;font-size: 45px;">
+        <strong>SELECT THE LEAGUE </strong>
+      </div>
+      <div class="has-background-info-dark" style="text-align: center;margin-top: 60px;font-size: 30px;">
+        <strong style="color: white;">NEWS FOOTBALL UPDATE</strong>
+      </div>
+      <!-- SHORT NEWS OF FOOTBALL -->
+      <div class="columns">
+          <div class="column is-4" v-for="(item, index) in news" :key="index">
+                <div class="card" style="height: 100%">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img :src= "item.image" />
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <p class="title is-4">{{item.title}}</p>
+                        <p class="subtitle is-6">{{item.description}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Created By </strong> APISORN TEEHOR <br>
+          WEB PROGRAMING KMITL
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- vue script -->
+    <script>
+      var app = new Vue({
+        el:'#app',
+        data: {
+              news:[]
+           },
+        created(){
+         const get_news = axios.get("http://localhost:3000/news")
+         .then(res=>{this.news = res.data})
+        }
+      })
+    </script>
+  </body>
+</html>

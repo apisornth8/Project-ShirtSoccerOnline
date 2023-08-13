@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('Header') -%>
+  <body>
+    <div id="app">
+      <section class="hero is-dark" style="width: 100%;">
+        <div class="hero-body">
+          <p class="title">
+            SHIRT SOCCER ONLINE
+          </p>
+          <p class="subtitle">
+            ALL SHIRT PREMIUM QULITY
+          </p>
+          <div class="navbar-end">
+            <a class="button is-primary is-inverted is-medium has-text-black"
+              href="/">
+              <span>Logout</span>
+            </a>
+          </div>
+          <div id="navbarMenuHeroA" class="navbar-menu" style="padding-bottom:
+            45px;">
+            <div class="navbar-end">
+              <span class="navbar-item">
+                <a class="button is-link is-inverted is-medium" href="/Landing_Page">
+                  <span>Home</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-primary is-inverted is-medium">
+                  <span>Manage Product</span>
+                </a>
+              </span>
+              <span class="navbar-item">
+                <a class="button is-warning is-inverted is-medium
+                  has-background-white" href="/Cart">
+                  <span>Checkout</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <table style="margin-top: 45px;margin-left: 45%;">
+        <tr>
+          <div>
+            <th>
+              <a>
+                <figure class="image is-128x128">
+                  <img class="is-rounded"
+                    src="https://fontlot.com/wp-content/uploads/2022/12/2-2.jpg">
+                </figure>
+              </a>
+            </th>
+          </div>
+        </tr>
+      </table>
+      <div style="text-align: center;margin-top: 40px;font-size: 45px;">
+        <strong>FILL DATA TO MANAGE PRODUCT</strong>
+      </div>
+      <div class="card">
+        <div class="card-body">
+            <label class="label">Name of Product :</label>
+            <input class="input is-primary is-rounded" placeholder="Ex. Away Manchester United">
+            <label class="label">Price of Product :</label>
+            <input class="input is-danger is-rounded" placeholder="Ex. 5000 ฿">
+            <label class="label">Image of Product :</label>
+            <input type="file" class="form-control" id="customFile" />
+            <label class="label">Select Club :</label>
+            <select class="form-select form-select-lg is-info mb-3" aria-label=".form-select-lg example">
+              <option selected>Open this select menu</option>
+              <option value="1">F.C.Barcelona</option>
+              <option value="2">Real Madrid CF</option>
+              <option value="3">Atletico Madrid</option>
+            </select>
+        </div>
+        <div class="card">
+            <footer class="card-footer">
+              <a href="/ManageProduct" class="card-footer-item">Back</a>
+              <a @click="saveData" class="card-footer-item">Add</a>
+            </footer>
+          </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Created By </strong> APISORN TEEHOR <br>
+          WEB PROGRAMING KMITL
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- vue script -->
+    <script>
+      var app = new Vue({
+        el:'#app',
+        methods:{
+            saveData(){
+                alert("DATA IS ALREADY SAVE !!")
+            }
+        }
+      })
+    </script>
+  </body>
+</html>

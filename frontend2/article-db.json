@@ -1,0 +1,62 @@
+{
+    "bayern": [
+        {
+            "content": "Home Shirt Der FCB",
+            "price": 2500,
+            "image": "/baye1.jpg",
+            "quantity": 0
+        },
+        {
+            "content": "Away Shirt Der FCB",
+            "price": 2500,
+            "image": "/baye2.jpg",
+            "quantity": 0
+        },
+        {
+            "content": "Third Shirt Der FCB",
+            "price": 2500,
+            "image": "/baye3.jpg",
+            "quantity": 0
+        }
+    ],
+    "dortm": [
+        {
+            "content":"Home Shirt BVB",
+            "price": 2500 ,
+            "image": "/dort1.jpg",
+            "quantity":0
+        },
+        {
+            "content":"Away Shirt BVB",
+            "price": 2500 ,
+            "image": "/dort2.jpg",
+            "quantity":0
+        },
+        {
+            "content":"Third Shirt BVB",
+            "price": 2400,
+            "image": "/dort3.jpg",
+            "quantity":0
+        }
+    ],
+    "wolfb": [
+            {
+                "content":"Home Shirt WOB",
+                "price": 2500,
+                "image": "/wolf1.jpg",
+                "quantity":0
+            },
+            {
+                "content":"Away Shirt WOB",
+                "price": 2500,
+                "image": "/wolf2.jpg",
+                "quantity":0
+            },
+            {
+                "content":"Third Shirt WOB",
+                "price": 2400,
+                "image": "/wolf3.jpg",
+                "quantity":0
+            }
+    ]
+}
